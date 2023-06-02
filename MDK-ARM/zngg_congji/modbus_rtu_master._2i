@@ -1,0 +1,6 @@
+--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../BSP/MODBUS-RTU(master) -I ../BSP/APP
+-I.\RTE\_zngg_congji
+-IC:\Users\19565\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include
+-IC:\Users\19565\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.0\Device\Include
+-D__UVISION_VERSION="533" -D_RTE_ -DSTM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB
+-o zngg_congji\modbus_rtu_master.o --omf_browse zngg_congji\modbus_rtu_master.crf --depend zngg_congji\modbus_rtu_master.d --feedback "zngg_congji\zngg_congji.fed" "..\BSP\MODBUS-RTU(master)\modbus_rtu_master.c"
