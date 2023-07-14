@@ -243,7 +243,7 @@ void USART2_IRQHandler(void)
 	uint32_t temp = 0;
 	if(__HAL_UART_GET_FLAG(&huart2,UART_FLAG_IDLE) != RESET)
 	{
-		printf("usart2\r\n");
+//		printf("usart2\r\n");
 		__HAL_UART_CLEAR_IDLEFLAG(&huart2);
 		temp = USART2->SR;
 		temp = USART2->DR;

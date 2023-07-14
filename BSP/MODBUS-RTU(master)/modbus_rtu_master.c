@@ -85,16 +85,16 @@ static uint32_t MBRTUMasterRead(MBRTUMaterTypeDef* pMaster, uint8_t ucSlaveAddr,
 {
     uint16_t crc;
 
-    pMaster->ucBuf[0] = ucSlaveAddr;
-    pMaster->ucBuf[1] = ucCmd;
-    pMaster->ucBuf[2] = ((usStartAddr & 0XFF00) >> 8);
-    pMaster->ucBuf[3] = (usStartAddr & 0XFF);
-    pMaster->ucBuf[4] = ((usNum & 0XFF00) >> 8);
-    pMaster->ucBuf[5] = (usNum & 0XFF);
+		pMaster->ucBuf[0] = ucSlaveAddr;
+		pMaster->ucBuf[1] = ucCmd;
+		pMaster->ucBuf[2] = ((usStartAddr & 0XFF00) >> 8);
+		pMaster->ucBuf[3] = (usStartAddr & 0XFF);
+		pMaster->ucBuf[4] = ((usNum & 0XFF00) >> 8);
+		pMaster->ucBuf[5] = (usNum & 0XFF);
 
-    crc = usMBCRC16( ( uint8_t * )pMaster->ucBuf, 6);
-    pMaster->ucBuf[6] = ( uint8_t )( crc & 0xFF );
-    pMaster->ucBuf[7] = ( uint8_t )( crc >> 8 );
+		crc = usMBCRC16( ( uint8_t * )pMaster->ucBuf, 6);
+		pMaster->ucBuf[6] = ( uint8_t )( crc & 0xFF );
+		pMaster->ucBuf[7] = ( uint8_t )( crc >> 8 );
 //for(int i = 0;i<8;i++)
 //{
 //	printf("0x%x\r\n",pMaster->ucBuf[i]);
@@ -114,24 +114,12 @@ static uint32_t MBRTUMasterRead(MBRTUMaterTypeDef* pMaster, uint8_t ucSlaveAddr,
 int MBRTUMasterReadHoldingRegisters(MBRTUMaterTypeDef* psModbus, uint8_t ucSlaveAddress, uint16_t usAddress, uint16_t usNum, uint16_t usTimeout, uint16_t* pusRegBuffer)
 {
     int ret = -1;
-//    int delay;
-
-//    if(psModbus->lock != NULL)
-//    {
-//        psModbus->lock();
-//    }
-
-
     MBRTUMasterRead(psModbus, ucSlaveAddress, 0X03, usAddress, usNum);
 		
     while(usTimeout != 0)
     {
 			if(rx_flag == 1)
 			{
-//				for(uint8_t i = 0;i < usNum+10;i++)
-//				{
-//					printf("0x%x\r\n",psModbus->ucBuf[i]);
-//				}
 				if(psModbus->ucBuf[0] == ucSlaveAddress && psModbus->ucBuf[1] == 0X03 && CheckCrcOK(&psModbus->ucBuf[0], psModbus->rx_len))
 				{
 //					printf("数据正确\r\n");
@@ -159,10 +147,5 @@ int MBRTUMasterReadHoldingRegisters(MBRTUMaterTypeDef* psModbus, uint8_t ucSlave
 				psModbus->delayms(1);
 			}
     }
-//    if(psModbus->unlock != NULL)
-//    {
-//        psModbus->unlock();
-//    }
-		printf("");
     return ret;
 }
